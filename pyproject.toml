@@ -40,6 +40,13 @@ dev = [
 line-length = 100
 target-version = "py311"
 
+[tool.pytest.ini_options]
+# Put the src-layout package on sys.path for tests directly, so `uv run pytest`
+# doesn't depend on the editable install. (This repo lives under iCloud Drive,
+# which hides files inside .venv; CPython's site skips hidden .pth files, so the
+# editable install is unreliable here — see docs/memory for the full root cause.)
+pythonpath = ["src"]
+
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
