@@ -1,0 +1,35 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.ruff_cache/
+
+# --- Environment ---
+.env
+.env.*
+
+# --- Quarto site build output ---
+/site/_site/
+/site/.quarto/
+
+# --- Data ---
+# Rule: raw data is git-ignored by default because it can be large.
+# Exception: the openfootball daily snapshots are tiny and public-domain,
+# so we keep their history in git (see the negation below).
+data/raw/**
+!data/raw/openfootball/
+!data/raw/openfootball/**
+
+# interim/processed are regenerable from raw, so we don't track them.
+data/interim/**
+data/processed/**
+
+# Keep the empty folder placeholders themselves tracked.
+!**/.gitkeep
+
+# --- OS noise ---
+.DS_Store
+Thumbs.db

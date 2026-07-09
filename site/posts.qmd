@@ -1,0 +1,10 @@
+---
+title: "Posts"
+listing:
+  contents: posts
+  sort: "date desc"
+  type: default
+  fields: [date, title, description]
+---
+
+No posts yet — the first ones arrive in Phase 2.

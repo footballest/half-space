@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: _site
+
+website:
+  title: "Half-Space"
+  description: "3D space-control and analytics for football."
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: posts.qmd
+        text: Posts
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+
+# Note: the theme/design here is a deliberately plain placeholder.
+# Real visual design is a later phase (we'll bring in the frontend-design work then).

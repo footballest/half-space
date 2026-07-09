@@ -1,0 +1,48 @@
+[project]
+name = "half-space"
+version = "0.1.0"
+description = "3D space-control visualizations and analytics for football, starting with the World Cup."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    # Base stack for Track A (live data collection + general analysis).
+    # We add libraries per phase rather than all up front, to keep the project lean.
+    "requests>=2.32",   # HTTP: pull the openfootball daily feed and other sources
+    "pandas>=2.2",      # tabular data wrangling
+    "pyarrow>=16",      # fast parquet read/write for the interim/processed stores
+]
+
+[project.optional-dependencies]
+# Track B (the space-control engine). Installed from Phase 3 onward with:
+#   uv sync --extra viz --extra tracking
+# Kept separate so Track A stays light and fast to set up.
+viz = [
+    "numpy>=1.26",
+    "scipy>=1.13",      # Voronoi baseline lives in scipy.spatial
+    "matplotlib>=3.9",
+    "mplsoccer>=1.4",   # pitch plotting
+    "plotly>=5.22",     # interactive 3D control surfaces (embeds straight into Quarto)
+]
+tracking = [
+    "kloppy>=3.15",     # standardizes tracking/event data across providers (Metrica, PFF, ...)
+]
+
+[dependency-groups]
+# Dev tools, installed by default with `uv sync`.
+dev = [
+    "ipykernel>=6.29",  # run notebooks
+    "jupyter>=1.1",
+    "ruff>=0.6",        # linting + formatting
+    "pytest>=8.3",      # tests
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/fsc"]

@@ -1,0 +1,12 @@
+---
+title: "Half-Space"
+---
+
+Space-control and analytics for football — starting with the World Cup.
+
+This site is a placeholder for now. The first posts will land during Phase 2.
+
+- **Live coverage** of the 2026 World Cup from event-level data.
+- **3D space-control** visualizations, built from tracking data.
+
+See the [Posts](posts.qmd) page.
