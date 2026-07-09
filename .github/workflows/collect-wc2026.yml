@@ -1,0 +1,57 @@
+name: Collect WC2026 (openfootball)
+
+# Daily snapshot of the openfootball World Cup 2026 feed.
+# Runs at 06:00 UTC — a few hours after typical match completion, so the day's
+# results are settled before we snapshot. Also runnable on demand via the
+# "Run workflow" button (workflow_dispatch) in the Actions tab.
+on:
+  schedule:
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+# Needed so the job can push the committed snapshot back to the repo.
+permissions:
+  contents: write
+
+# Never let two collector runs (e.g. a cron and a manual trigger) race on the
+# same branch. Let the in-progress one finish rather than cancelling it.
+concurrency:
+  group: collect-wc2026
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      # Base + dev deps only; the collector needs no viz/tracking extras.
+      - name: Install dependencies
+        run: uv sync
+
+      # A fetch failure raises and exits non-zero here, failing the run so a
+      # broken feed surfaces. Writes the raw snapshot and regenerates the
+      # (git-ignored) processed parquet.
+      - name: Run collector
+        run: uv run python -m fsc.collectors.openfootball
+
+      # Stage only the raw snapshots — processed/ is regenerable and git-ignored.
+      # Commit + push only when the snapshot actually changed; otherwise report
+      # "no changes" and exit 0 so an uneventful day is not a failed run.
+      - name: Commit snapshot if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/raw/openfootball/
+          if git diff --cached --quiet; then
+            echo "no changes — nothing to commit"
+            exit 0
+          fi
+          git commit -m "data: openfootball snapshot $(date -u +%F)"
+          git push

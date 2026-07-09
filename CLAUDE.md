@@ -69,4 +69,5 @@ quarto preview site                     # build + preview the site (Quarto is a 
 ## Current status
 
 - Phase 0 — Project setup: ✅ done.
-- Phase 1 — Live data collector (Track A): next. Handoff will live in `docs/handoffs/phase1.md`.
+- Phase 1 — Live data collector + daily automation (Track A): ✅ done.
+- Phase 1b — Kaggle CC0 + FIFA PMSR data sources: next.

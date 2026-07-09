@@ -60,10 +60,23 @@ Quarto is a separate CLI tool, not a Python package — install it from
 quarto preview site   # build + live-preview the placeholder site
 ```
 
+## Automation
+
+A GitHub Action ([`.github/workflows/collect-wc2026.yml`](.github/workflows/collect-wc2026.yml))
+runs the openfootball collector once a day at **06:00 UTC**. Each run fetches the feed, writes
+that day's raw snapshot under `data/raw/openfootball/`, and — only if the snapshot changed —
+commits it back to the repo (as `github-actions[bot]`). The regenerable `data/processed/*.parquet`
+tables are not committed. A day with no new data ends cleanly without a commit; a failed fetch
+fails the run so a broken feed is visible.
+
+To run it by hand: open the repo's **Actions** tab → **Collect WC2026 (openfootball)** →
+**Run workflow**.
+
 ## Status
 
 - **Phase 0 — Project setup:** ✅ this scaffold.
-- **Phase 1 — Live data collector:** next.
+- **Phase 1 — Live data collector + daily automation:** ✅ done.
+- **Phase 1b — Kaggle CC0 + FIFA PMSR data sources:** next.
 
 ## Data sources & attribution
 
