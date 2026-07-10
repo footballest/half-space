@@ -17,11 +17,13 @@ __pycache__/
 
 # --- Data ---
 # Rule: raw data is git-ignored by default because it can be large.
-# Exception: the openfootball daily snapshots are tiny and public-domain,
-# so we keep their history in git (see the negation below).
+# Exceptions: the openfootball daily snapshots and the small (~440 KB) CC0
+# Kaggle WC2026 CSVs are tiny and public-domain, so we keep their history in git.
 data/raw/**
 !data/raw/openfootball/
 !data/raw/openfootball/**
+!data/raw/kaggle_wc2026/
+!data/raw/kaggle_wc2026/**
 
 # interim/processed are regenerable from raw, so we don't track them.
 data/interim/**

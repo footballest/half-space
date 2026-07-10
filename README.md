@@ -81,7 +81,9 @@ To run it by hand: open the repo's **Actions** tab → **Collect WC2026 (openfoo
 ## Data sources & attribution
 
 - **openfootball** — public domain match/results data (Track A backbone).
-- **Kaggle FIFA World Cup 2026 dataset** — CC0, events/xG/stats.
+- **Kaggle FIFA World Cup 2026 dataset** — CC0 (public domain), by MD Mominul Islam
+  ([`mominullptr/fifa-world-cup-2026-dataset`](https://www.kaggle.com/datasets/mominullptr/fifa-world-cup-2026-dataset));
+  adds xG, per-team match stats, venues (altitude), and referees. No attribution legally required; credited here as good practice.
 - **StatsBomb Open Data** — free event + 360 data; **attribution required** (credit StatsBomb).
 - **PFF FC 2022 World Cup** — free tracking + event data (request via their form).
 
