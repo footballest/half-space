@@ -70,4 +70,6 @@ quarto preview site                     # build + preview the site (Quarto is a 
 
 - Phase 0 — Project setup: ✅ done.
 - Phase 1 — Live data collector + daily automation (Track A): ✅ done.
-- Phase 1b — Kaggle CC0 + FIFA PMSR data sources: next.
+- Phase 1b — Kaggle data: ✅ done.
+- FIFA PMSR physical data: deferred — folded into a later phase.
+- Next: Phase 2 (first blog posts).

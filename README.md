@@ -76,7 +76,9 @@ To run it by hand: open the repo's **Actions** tab → **Collect WC2026 (openfoo
 
 - **Phase 0 — Project setup:** ✅ this scaffold.
 - **Phase 1 — Live data collector + daily automation:** ✅ done.
-- **Phase 1b — Kaggle CC0 + FIFA PMSR data sources:** next.
+- **Phase 1b — Kaggle data:** ✅ done.
+- **FIFA PMSR physical data:** deferred — folded into a later phase.
+- **Next:** Phase 2 (first blog posts).
 
 ## Data sources & attribution
 
